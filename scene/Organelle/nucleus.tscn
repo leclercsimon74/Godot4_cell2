@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://btmkvyjb36v7r"]
+
+[ext_resource type="Script" path="res://scene/Organelle/Nucleus.gd" id="1_mgdjv"]
+[ext_resource type="Texture2D" uid="uid://cik21esphwb68" path="res://img/Cell content/Nucleus_Kari_trans.png" id="2_mvtew"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2m2mc"]
+bounce = 1.0
+
+[node name="Nucleus" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 14
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_2m2mc")
+script = ExtResource("1_mgdjv")
+
+[node name="NucleusKariTrans" type="Sprite2D" parent="."]
+scale = Vector2(0.525391, 0.525391)
+texture = ExtResource("2_mvtew")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.525391, 0.525391)
+polygon = PackedVector2Array(63, -121.4, 63, -120, 79.7, -107, 88, -107, 88, -104.7, 109, -80.8, 109, -76, 112.5, -63, 113.1, -63, 118, -55.6, 118, -50, 128, -36.4, 128, -10, 125, -6.3, 125, 9, 122.5, 9, 122, 9.2, 123.2, 23, 121.8, 23, 115.7, 66, 114, 66, 111, 69.7, 111, 80, 108.2, 80, 101.9, 80.8, 92, 94, 85.2, 94, 84, 92.8, 61.7, 112, 55.7, 112, 49.7, 117, 44.3, 117, 17.8, 128, -47.3, 128, -56, 126.7, -56, 125.2, -80, 113.2, -80, 111.8, -100, 92.9, -100, 91.5, -109, 72.4, -109, 64.5, -110.4, 61, -120, 50.8, -120, 43.5, -119.7, 43, -128, 31.4, -128, -47.2, -125, -56.3, -125, -57.5, -128, -65, -124.9, -65, -111, -79.9, -111, -85, -108.9, -85, -98.9, -96, -96.4, -96, -95.4, -99, -91.7, -99, -78.9, -114, -73, -114, -69, -119, -62.5, -119, -60.1, -122, -51.2, -122, -50.7, -121.5, -49.1, -124, -44.4, -124, -42.7, -122.9, -25.6, -128, 45.1, -128)

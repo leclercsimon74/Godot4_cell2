@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr0pjqvrxy830"]
+
+[ext_resource type="Script" path="res://scene/Organelle/vesicle.gd" id="1_n4awy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yx88f"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yd17x"]
+
+[node name="Vesicle" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 46
+physics_material_override = SubResource("PhysicsMaterial_yx88f")
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_n4awy")
+
+[node name="_collid" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yd17x")
+
+[node name="Growing_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Maturation_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 0.999999)
+scale = Vector2(2.25, 2.2)
+
+[connection signal="timeout" from="Growing_timer" to="." method="_on_growing_timer_timeout"]
+[connection signal="timeout" from="Maturation_timer" to="." method="_on_maturation_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

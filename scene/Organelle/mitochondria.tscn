@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgattob3ysy6p"]
+
+[ext_resource type="Texture2D" uid="uid://bjvscxvycrcrh" path="res://img/Cell content/Mito_Simon_trans.png" id="1_fe3w3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_00uyc"]
+bounce = 1.0
+
+[node name="Mitochondria" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 6
+mass = 10.0
+inertia = 1.0
+physics_material_override = SubResource("PhysicsMaterial_00uyc")
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="MitoSimonTrans" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.243164, 0.243164)
+texture = ExtResource("1_fe3w3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.243164, 0.243164)
+polygon = PackedVector2Array(93, -127.3, 109, -120.3, 109, -118.9, 123, -106.9, 123, -103.5, 128, -93.5, 128, -45.2, 125.5, -36, 124, -36, 113, -21, 111.8, -21, 93.8, -3, 90.7, -3, 32, 46.9, 32, 47.8, 3, 78.9, 3, 80.8, -11, 95.9, -11, 97.5, -13.8, 103, -17.1, 103, -31.1, 118, -33.5, 118, -48.4, 127, -52.3, 127, -53.6, 128, -105, 128, -117, 123.4, -117, 121.7, -128, 107.3, -128, 71.9, -121.4, 53, -120, 53, -103, 30.3, -103, 27.6, -82.3, -20, -81, -20, -52, -61, -50.8, -61, -24.9, -88, -21.7, -88, 2.2, -109, 5.39999, -109, 24.4, -121, 28.4, -121, 39.5, -127, 44.9, -127, 48.3, -128, 93, -128)
