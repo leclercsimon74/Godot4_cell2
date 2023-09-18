@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://qb8i6h0kumq8"]
+
+[ext_resource type="Script" path="res://scene/menu.gd" id="1_gouqq"]
+[ext_resource type="PackedScene" uid="uid://duo42cyrat8xi" path="res://scene/level1/cell.tscn" id="2_xy74m"]
+
+[sub_resource type="Gradient" id="Gradient_awggh"]
+colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qiu8"]
+noise_type = 2
+seed = 1
+frequency = 0.0203
+cellular_distance_function = 2
+cellular_jitter = 0.9
+cellular_return_type = 0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n502c"]
+color_ramp = SubResource("Gradient_awggh")
+noise = SubResource("FastNoiseLite_5qiu8")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gouqq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = SubResource("NoiseTexture2D_n502c")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemList" type="ItemList" parent="UI"]
+layout_mode = 0
+offset_top = 488.0
+offset_right = 120.0
+offset_bottom = 648.0
+
+[node name="start_button" type="Button" parent="UI/ItemList"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "New game"
+
+[node name="option_button" type="Button" parent="UI/ItemList"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 90.0
+offset_bottom = 71.0
+text = "Option
+"
+
+[node name="info_button" type="Button" parent="UI/ItemList"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 109.0
+offset_bottom = 111.0
+text = "Informations"
+
+[node name="quit_button" type="Button" parent="UI/ItemList"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 90.0
+offset_bottom = 151.0
+text = "Quit"
+
+[node name="cell" parent="." instance=ExtResource("2_xy74m")]
+position = Vector2(400, 336)
+
+[connection signal="pressed" from="UI/ItemList/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/option_button" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/info_button" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/quit_button" to="." method="_on_quit_button_pressed"]
