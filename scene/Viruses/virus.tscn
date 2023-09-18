@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmra87hbp278j"]
+
+[ext_resource type="Script" path="res://scene/Viruses/virus.gd" id="1_osmlk"]
+[ext_resource type="Texture2D" path="res://img/Virus_trans.png" id="1_sjgi2"]
+[ext_resource type="PackedScene" uid="uid://lqsgyvn6ac80" path="res://scene/explosion.tscn" id="3_2q5om"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mkmiy"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4t3f"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yrh5d"]
+radius = 22.0227
+
+[node name="Virus" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 9
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_mkmiy")
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_osmlk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_u4t3f")
+
+[node name="Cell_detection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cell_detection"]
+shape = SubResource("CircleShape2D_yrh5d")
+
+[node name="Explosion" parent="." instance=ExtResource("3_2q5om")]
+
+[node name="1s timer" type="Timer" parent="."]
+autostart = true
+
+[node name="explosion" type="Timer" parent="."]
+one_shot = true
+
+[node name="Cell_atach" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(3, -25.1, 19.6, -14, 29.4, -20, 32, -20, 32, -11, 26.8, -7.6, 29, -6.1, 29, 3.2, 27.4, 11.4, 32, 18.4, 32, 19.5, 31.2, 21, 29.6, 21, 26.1, 23.3, 24, 22.2, 24, 21.3, 21, 19.8, 16.8, 24, 13.3, 24, 6, 26.4, 6, 31.8, -5, 32, -5, 30.9, -4.3, 26, -6.5, 26, -17.6, 20, -18.4, 20, -25.4, 25, -28.8, 25, -32, 21.8, -32, 19, -25.4, 14, -32, 4.6, -32, 1.8, -30.4, -8, -32, -9.2, -32, -20.2, -24.8, -15.9, -6, -24.3, -6, -32, 3, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_sjgi2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Cell_detection" to="." method="_on_cell_detection_body_entered"]
+[connection signal="timeout" from="1s timer" to="." method="_on_s_timer_timeout"]
+[connection signal="timeout" from="explosion" to="." method="_on_explosion_timeout"]
+[connection signal="timeout" from="Cell_atach" to="." method="_on_cell_atach_timeout"]
