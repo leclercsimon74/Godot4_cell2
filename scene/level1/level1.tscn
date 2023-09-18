@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct45g47pfda0n"]
+
+[ext_resource type="Script" path="res://scene/level1/level1.gd" id="1_f6oda"]
+[ext_resource type="PackedScene" uid="uid://duo42cyrat8xi" path="res://scene/level1/cell.tscn" id="2_wgcke"]
+
+[sub_resource type="Gradient" id="Gradient_ujmbq"]
+colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qvek"]
+noise_type = 2
+seed = 1
+frequency = 0.0203
+cellular_distance_function = 2
+cellular_jitter = 0.9
+cellular_return_type = 0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yrctj"]
+color_ramp = SubResource("Gradient_ujmbq")
+noise = SubResource("FastNoiseLite_5qvek")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ti2p"]
+size = Vector2(58, 760)
+
+[node name="level1" type="Node2D"]
+script = ExtResource("1_f6oda")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = SubResource("NoiseTexture2D_yrctj")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1216, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7ti2p")
+
+[node name="cell" parent="." instance=ExtResource("2_wgcke")]
+position = Vector2(288, 328)
+
+[node name="VirusSpawn" type="Timer" parent="."]
+
+[node name="Viruses" type="Node2D" parent="."]
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+
+[connection signal="timeout" from="VirusSpawn" to="." method="_on_virus_spawn_timeout"]
