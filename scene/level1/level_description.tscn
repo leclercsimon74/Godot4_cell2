@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://cliyfdnjmsfnt"]
+
+[ext_resource type="Script" path="res://scene/level1/level_description.gd" id="1_odg7v"]
+
+[sub_resource type="Gradient" id="Gradient_pg2y0"]
+colors = PackedColorArray(0.582277, 1.60275e-05, 0.422842, 1, 0.831774, 0.709785, 0.966322, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g4gye"]
+noise_type = 4
+seed = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vgnnx"]
+color_ramp = SubResource("Gradient_pg2y0")
+noise = SubResource("FastNoiseLite_g4gye")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kv7rf"]
+texture = SubResource("NoiseTexture2D_vgnnx")
+
+[node name="level_description" type="CanvasLayer"]
+script = ExtResource("1_odg7v")
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+offset_left = 334.0
+offset_top = 29.0
+offset_right = 815.0
+offset_bottom = 611.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kv7rf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 482.0
+offset_bottom = 582.0
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 482.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "INFORMATIONS"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 2
+offset_left = 26.0
+offset_top = 139.0
+offset_right = 450.0
+offset_bottom = 418.0
+text = "Think of a secretory cell like a special worker inside your body. These cells have an important job: they make things and send them to the right places.
+
+Imagine you have a factory in your body, and secretory cells are the workers in that factory. Each worker is in charge of making something different, like juice, toys, or even letters. Once they've made these things, they put them in tiny packages called vesicles.
+
+These cells can produce a lot vesicles quickly."
+
+[node name="ContinueButton" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 146.0
+offset_top = 507.0
+offset_right = 314.0
+offset_bottom = 557.0
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[connection signal="pressed" from="Panel/ContinueButton" to="." method="_on_continue_button_pressed"]

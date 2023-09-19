@@ -55,4 +55,8 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Score: 0"
 
+[node name="Level_Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="VirusSpawn" to="." method="_on_virus_spawn_timeout"]
+[connection signal="timeout" from="Level_Timer" to="." method="_on_level_timer_timeout"]
