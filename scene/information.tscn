@@ -1,0 +1,212 @@
+[gd_scene load_steps=22 format=3 uid="uid://c50auxgppc4t3"]
+
+[ext_resource type="Script" path="res://scene/information.gd" id="1_s5gd6"]
+[ext_resource type="Texture2D" uid="uid://cayjyvsxcgv4j" path="res://img/Viruses/Ambre_Virus_trans.png" id="2_hspkd"]
+[ext_resource type="Texture2D" uid="uid://b7mhwsit1h3wf" path="res://img/Viruses/Virus-Visa-5_trans.png" id="3_oifip"]
+[ext_resource type="Texture2D" uid="uid://bvcmrpbi2bb6k" path="res://img/Viruses/Virus-Visa-10_trans.png" id="4_2gy3s"]
+[ext_resource type="Texture2D" uid="uid://bg24k3jy5cm8d" path="res://img/Viruses/Virus_Kari-1_trans.png" id="5_2ypdi"]
+[ext_resource type="Texture2D" uid="uid://uki7tm8a0om4" path="res://img/Viruses/Virus_Simon-2_trans.png" id="6_2x2lh"]
+[ext_resource type="Texture2D" uid="uid://dxvnewbxeh1vy" path="res://img/Viruses/Virus-Maija-1_trans.png" id="7_s0x3s"]
+
+[sub_resource type="Gradient" id="Gradient_jeyw4"]
+colors = PackedColorArray(0.322094, 2.52927e-05, 0.280074, 1, 0.404512, 0.404511, 0.404511, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_00rdv"]
+noise_type = 2
+seed = 1
+frequency = 0.0203
+cellular_distance_function = 2
+cellular_jitter = 0.9
+cellular_return_type = 0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j570o"]
+color_ramp = SubResource("Gradient_jeyw4")
+noise = SubResource("FastNoiseLite_00rdv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7gos"]
+size = Vector2(1170, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx6lx"]
+size = Vector2(14, 648)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3ear"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0vim"]
+radius = 40.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r850n"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0kpls"]
+radius = 32.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iklp6"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1k7v"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jam2n"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw3be"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2p27p"]
+radius = 32.0
+
+[node name="Information" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s5gd6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = SubResource("NoiseTexture2D_j570o")
+
+[node name="Worldbundary" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Worldbundary"]
+position = Vector2(576, 648)
+shape = SubResource("RectangleShape2D_i7gos")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Worldbundary"]
+position = Vector2(576, -8)
+shape = SubResource("RectangleShape2D_i7gos")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Worldbundary"]
+position = Vector2(1152, 320)
+shape = SubResource("RectangleShape2D_vx6lx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Worldbundary"]
+position = Vector2(-4, 324)
+shape = SubResource("RectangleShape2D_vx6lx")
+
+[node name="Virus1" type="RigidBody2D" parent="."]
+position = Vector2(360, 568)
+physics_material_override = SubResource("PhysicsMaterial_w3ear")
+linear_velocity = Vector2(-10, 10)
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="AmbreVirusTrans" type="Sprite2D" parent="Virus1"]
+position = Vector2(9.15527e-05, 0.00012207)
+scale = Vector2(1.375, 1.375)
+texture = ExtResource("2_hspkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Virus1"]
+shape = SubResource("CircleShape2D_s0vim")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(48, 544)
+physics_material_override = SubResource("PhysicsMaterial_r850n")
+linear_damp_mode = 1
+angular_velocity = 0.174533
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_0kpls")
+
+[node name="Virus-maija-1Trans" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("7_s0x3s")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+position = Vector2(920, 544)
+physics_material_override = SubResource("PhysicsMaterial_iklp6")
+linear_damp_mode = 1
+angular_velocity = -0.872665
+angular_damp_mode = 1
+
+[node name="VirusKari-1Trans" type="Sprite2D" parent="RigidBody2D3"]
+texture = ExtResource("5_2ypdi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+shape = SubResource("CircleShape2D_i1k7v")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(48, 48)
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource("CircleShape2D_jam2n")
+
+[node name="Virus-visa-10Trans" type="Sprite2D" parent="RigidBody2D2"]
+texture = ExtResource("4_2gy3s")
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="."]
+position = Vector2(1104, 192)
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+shape = SubResource("CircleShape2D_yw3be")
+
+[node name="Virus-visa-5Trans" type="Sprite2D" parent="RigidBody2D4"]
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("3_oifip")
+
+[node name="RigidBody2D5" type="RigidBody2D" parent="."]
+position = Vector2(1024, 424)
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D5"]
+shape = SubResource("CircleShape2D_2p27p")
+
+[node name="VirusSimon-2Trans" type="Sprite2D" parent="RigidBody2D5"]
+texture = ExtResource("6_2x2lh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 1088.0
+offset_bottom = 576.0
+bbcode_enabled = true
+text = "[center][b]The world of virus[/b][/center]
+
+Viruses are like little packages of trouble. They're made up of tiny pieces, kind of like a puzzle. These pieces help the virus sneak into your body.
+
+Once a virus gets inside your body, it starts to cause problems. It's like a little troublemaker that makes you feel unwell. It can give you a fever, make you cough or sneeze, and even make you feel tired.
+
+But here's where the real superhero action happens! Our bodies have amazing superhero cells called \"white blood cells.\" These white blood cells are like the body's defense team. They work really hard to fight off these tiny villains.
+
+When white blood cells see a virus, they get all geared up for battle. They can surround the virus, kind of like building a wall around it, to keep it from causing more trouble. They also shoot special weapons at the virus, which can break it into pieces and stop it from making you even sicker.
+
+So, a virus is like a tiny, sneaky troublemaker that can make you sick, but your body has its own superheroes, the white blood cells, to help you get better by fighting off the virus and keeping you healthy!
+
+[b]In this Game[/b]
+The virus attack your cell, and you need to target them using the vesicles. Be carefull, if the virus enter the nucleus, it is game over! The virus will be able to multiplicate in the cell and make you sick."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 592.0
+offset_right = 1133.0
+offset_bottom = 623.0
+text = "Return"
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 592.0
+offset_right = 177.0
+offset_bottom = 623.0
+text = "Next: Organelle"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

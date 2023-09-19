@@ -1,6 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg3k7dlxss6ob"]
+[gd_scene load_steps=6 format=3 uid="uid://bg3k7dlxss6ob"]
 
 [ext_resource type="Script" path="res://scene/Game_over.gd" id="1_f8bhx"]
 
-[node name="Game_Over" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_ij0x2"]
+colors = PackedColorArray(0.582277, 1.60275e-05, 0.422842, 1, 0.831774, 0.709785, 0.966322, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wuvn8"]
+noise_type = 4
+seed = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8bcwo"]
+color_ramp = SubResource("Gradient_ij0x2")
+noise = SubResource("FastNoiseLite_wuvn8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3knjg"]
+texture = SubResource("NoiseTexture2D_8bcwo")
+
+[node name="Game_Over" type="CanvasLayer"]
 script = ExtResource("1_f8bhx")
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+offset_left = 334.0
+offset_top = 29.0
+offset_right = 815.0
+offset_bottom = 611.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3knjg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+process_mode = 3
+layout_mode = 2
+offset_left = -298.0
+offset_right = 779.0
+offset_bottom = 582.0
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer/Label"]
+process_mode = 3
+layout_mode = 2
+offset_top = 196.0
+offset_right = 1077.0
+offset_bottom = 300.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Label/CenterContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TryButton" type="Button" parent="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Try again"
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer/TryButton" to="." method="_on_try_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

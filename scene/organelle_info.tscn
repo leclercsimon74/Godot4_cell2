@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7ihx4lkgp2h3"]
+
+[ext_resource type="Script" path="res://scene/organelle_info.gd" id="1_i35mh"]
+[ext_resource type="Texture2D" uid="uid://cik21esphwb68" path="res://img/Cell content/Nucleus_Kari_trans.png" id="1_o7n8u"]
+[ext_resource type="Texture2D" uid="uid://bjvscxvycrcrh" path="res://img/Cell content/Mito_Simon_trans.png" id="2_adjw4"]
+[ext_resource type="Texture2D" uid="uid://cc5wqq02o0pyw" path="res://img/Cell content/Golgi_Kari_trans.png" id="3_tngka"]
+[ext_resource type="Texture2D" uid="uid://cvgwt7kxioyvd" path="res://img/Cell content/Reticulum_Simon_trans.png" id="4_imdtl"]
+[ext_resource type="Texture2D" uid="uid://dpthqpw1xoeiy" path="res://img/Cell content/Cell1.png" id="6_pug83"]
+
+[sub_resource type="Gradient" id="Gradient_awggh"]
+colors = PackedColorArray(0.322094, 2.52927e-05, 0.280074, 1, 0.404512, 0.404511, 0.404511, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qiu8"]
+noise_type = 2
+seed = 1
+frequency = 0.0203
+cellular_distance_function = 2
+cellular_jitter = 0.9
+cellular_return_type = 0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_assrt"]
+color_ramp = SubResource("Gradient_awggh")
+noise = SubResource("FastNoiseLite_5qiu8")
+
+[node name="Organelle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i35mh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = SubResource("NoiseTexture2D_assrt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 224.0
+offset_top = 16.0
+offset_right = 1088.0
+offset_bottom = 576.0
+bbcode_enabled = true
+text = "[center][b]Organelles of the cell[/b][/center]
+
+[b]The nucleus[/b]
+Think of the nucleus as the cell's control center or boss. It's like the brain of the cell. It tells the cell what to do and how to do it. Just like your brain helps you think and make decisions, the nucleus helps the cell do its job.
+
+[b]The reticulum[/b]
+The endoplasmic reticulum is like a highway inside the cell. It helps transport things from one part of the cell to another. Just like cars on a highway move people and things around, the ER moves molecules and materials around the cell so it can work properly.
+
+[b]The golgi[/b]
+Picture the Golgi as the cell's post office. It packages and sends things to different parts of the cell or even outside the cell. It's like wrapping up a gift and sending it to the right place. Cells use the Golgi to send important stuff where it's needed.
+
+[b]The mitochondria[/b]
+Imagine mitochondria as the power plants of the cell. They make energy, which is like the cell's food. This energy helps the cell do all the things it needs to do, just like how you need food to have the energy to play and learn..
+
+"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1072.0
+offset_top = 592.0
+offset_right = 1133.0
+offset_bottom = 623.0
+text = "Return"
+
+[node name="PreviousButton" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 592.0
+offset_right = 93.0
+offset_bottom = 623.0
+text = "Previous: Virus"
+
+[node name="NucleusKariTrans" type="Sprite2D" parent="."]
+position = Vector2(152, 80)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("1_o7n8u")
+
+[node name="MitoSimonTrans" type="Sprite2D" parent="."]
+position = Vector2(152, 440)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("2_adjw4")
+
+[node name="GolgiKariTrans" type="Sprite2D" parent="."]
+position = Vector2(80, 328)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_tngka")
+
+[node name="ReticulumSimonTrans" type="Sprite2D" parent="."]
+position = Vector2(112, 216)
+rotation = 0.958186
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_imdtl")
+
+[node name="Cell1" type="Sprite2D" parent="."]
+position = Vector2(560, 552)
+scale = Vector2(0.837678, 0.837678)
+texture = ExtResource("6_pug83")
+
+[node name="GolgiKariTrans" type="Sprite2D" parent="Cell1"]
+position = Vector2(9.55029, 57.3013)
+rotation = -2.15374
+scale = Vector2(0.167875, 0.167875)
+texture = ExtResource("3_tngka")
+
+[node name="NucleusKariTrans2" type="Sprite2D" parent="Cell1"]
+position = Vector2(-45.2147, -2.37109)
+scale = Vector2(0.316036, 0.316036)
+texture = ExtResource("1_o7n8u")
+
+[node name="ReticulumSimonTrans2" type="Sprite2D" parent="Cell1"]
+position = Vector2(-57.301, -57.3013)
+rotation = 0.479966
+scale = Vector2(0.298444, 0.298444)
+texture = ExtResource("4_imdtl")
+
+[node name="MitoSimonTrans" type="Sprite2D" parent="Cell1"]
+position = Vector2(47.751, -47.7507)
+scale = Vector2(0.167875, 0.167875)
+texture = ExtResource("2_adjw4")
+
+[node name="MitoSimonTrans2" type="Sprite2D" parent="Cell1"]
+position = Vector2(-66.8513, 66.8516)
+rotation = -2.03505
+scale = Vector2(0.167875, 0.167875)
+texture = ExtResource("2_adjw4")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
