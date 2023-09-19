@@ -4,7 +4,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fb1tg"]
 friction = 0.0
-bounce = 1.0
+bounce = 0.5
 
 [node name="Golgi" type="RigidBody2D"]
 collision_layer = 4
@@ -12,7 +12,6 @@ collision_mask = 6
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_fb1tg")
 lock_rotation = true
-linear_damp_mode = 1
 
 [node name="GolgiKariTrans" type="Sprite2D" parent="."]
 position = Vector2(-7.62939e-06, -7.62939e-06)

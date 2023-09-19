@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cvgwt7kxioyvd" path="res://img/Cell content/Reticulum_Simon_trans.png" id="1_tnsum"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vh8ti"]
-bounce = 1.0
+friction = 0.0
 
 [node name="Reticulum" type="RigidBody2D"]
 collision_layer = 6
@@ -11,8 +11,7 @@ collision_mask = 4
 mass = 10.0
 inertia = 1.0
 physics_material_override = SubResource("PhysicsMaterial_vh8ti")
-linear_damp_mode = 1
-angular_damp_mode = 1
+gravity_scale = 0.0
 
 [node name="ReticulumSimonTrans" type="Sprite2D" parent="."]
 scale = Vector2(0.351563, 0.351563)

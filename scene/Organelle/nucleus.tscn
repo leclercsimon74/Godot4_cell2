@@ -1,17 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://btmkvyjb36v7r"]
+[gd_scene load_steps=3 format=3 uid="uid://btmkvyjb36v7r"]
 
-[ext_resource type="Script" path="res://scene/Organelle/Nucleus.gd" id="1_mgdjv"]
 [ext_resource type="Texture2D" uid="uid://cik21esphwb68" path="res://img/Cell content/Nucleus_Kari_trans.png" id="2_mvtew"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2m2mc"]
-bounce = 1.0
+bounce = 0.5
 
 [node name="Nucleus" type="RigidBody2D"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 14
 mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_2m2mc")
-script = ExtResource("1_mgdjv")
 
 [node name="NucleusKariTrans" type="Sprite2D" parent="."]
 scale = Vector2(0.525391, 0.525391)
