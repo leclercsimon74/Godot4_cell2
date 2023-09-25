@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr0pjqvrxy830"]
+[gd_scene load_steps=5 format=3 uid="uid://dr0pjqvrxy830"]
 
 [ext_resource type="Script" path="res://scene/Organelle/vesicle.gd" id="1_n4awy"]
+[ext_resource type="AudioStream" uid="uid://biv10mm3o05m4" path="res://lib/sound/Vesicle_generation.wav" id="2_2b2sa"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yx88f"]
 friction = 0.0
@@ -13,6 +14,7 @@ collision_layer = 4
 collision_mask = 46
 physics_material_override = SubResource("PhysicsMaterial_yx88f")
 gravity_scale = 0.0
+lock_rotation = true
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_n4awy")
@@ -33,6 +35,10 @@ one_shot = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.5, 0.999999)
 scale = Vector2(2.25, 2.2)
+
+[node name="GenerationSFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2b2sa")
+volume_db = -10.0
 
 [connection signal="timeout" from="Growing_timer" to="." method="_on_growing_timer_timeout"]
 [connection signal="timeout" from="Maturation_timer" to="." method="_on_maturation_timer_timeout"]

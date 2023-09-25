@@ -38,7 +38,7 @@ func _ready():
 	self.linear_damp = 0
 	self.linear_damp_mode = 1
 	update_collision_shape(end_radius)
-	
+	$GenerationSFx.play()
 
 func _process(_delta):
 	if growing:
