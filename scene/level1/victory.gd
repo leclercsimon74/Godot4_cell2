@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready():
+	$AudioStreamPlayer.play()
 
 
 func _on_quit_button_pressed():
@@ -14,5 +15,6 @@ func _on_next_button_pressed():
 
 
 func _on_mainmenu_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scene/menu2.tscn")
 	

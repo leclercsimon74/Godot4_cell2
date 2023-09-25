@@ -1,32 +1,24 @@
 extends Node2D
 
 @export var vesicle_max_n := 10
-@onready var vesicle_produced := 0
-
+@export var vesicle_production_speed := 3
+@onready var vesicle_produced := $Vesicles_parent.get_children().size()
 @onready var vesicle_scene := preload("res://scene/Organelle/vesicle.tscn")
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer_Vesicle_rate.start(1)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+	$Timer_Vesicle_rate.start(vesicle_production_speed)
 	
 	
 func _on_timer_vesicle_rate_timeout():
-	if $Golgi/Vesicles.get_children().size() < vesicle_max_n:
+	if $Vesicles_parent.get_children().size() < vesicle_max_n:
 		generate_vesicle()
 		print('Vesicule Produced: '+str(vesicle_produced))
-	
+
 func generate_vesicle():
 	var vesicle = vesicle_scene.instantiate()
-	vesicle.position = $Golgi.position+Vector2(20,0)
-	$Golgi/Vesicles.add_child(vesicle)
+	vesicle.global_position = $Golgi.position + Vector2(40, randi() %10)
+	$Vesicles_parent.add_child(vesicle)
 	vesicle_produced += 1
-
-
-
-

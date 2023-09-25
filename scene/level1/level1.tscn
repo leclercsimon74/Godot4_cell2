@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct45g47pfda0n"]
+[gd_scene load_steps=8 format=3 uid="uid://ct45g47pfda0n"]
 
 [ext_resource type="Script" path="res://scene/level1/level1.gd" id="1_f6oda"]
 [ext_resource type="PackedScene" uid="uid://duo42cyrat8xi" path="res://scene/level1/cell.tscn" id="2_wgcke"]
+[ext_resource type="PackedScene" uid="uid://bvaldly378qc8" path="res://scene/pause.tscn" id="3_07xku"]
 
 [sub_resource type="Gradient" id="Gradient_ujmbq"]
 colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
@@ -57,6 +58,9 @@ text = "Score: 0"
 
 [node name="Level_Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Pause" parent="." instance=ExtResource("3_07xku")]
+visible = false
 
 [connection signal="timeout" from="VirusSpawn" to="." method="_on_virus_spawn_timeout"]
 [connection signal="timeout" from="Level_Timer" to="." method="_on_level_timer_timeout"]

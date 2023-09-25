@@ -56,21 +56,14 @@ rotation = 1.01578
 [node name="Golgi" parent="." instance=ExtResource("6_a3omv")]
 position = Vector2(-32, 128)
 rotation = -2.02982
-
-[node name="Vesicles" type="Node2D" parent="Golgi"]
-position = Vector2(-24.8121, 50.2032)
-rotation = 2.02982
-
-[node name="Vesicle" parent="Golgi/Vesicles" instance=ExtResource("7_omjpb")]
-position = Vector2(144, -280)
-
-[node name="Vesicle2" parent="Golgi/Vesicles" instance=ExtResource("7_omjpb")]
-position = Vector2(-64, -304)
-
-[node name="Vesicle3" parent="Golgi/Vesicles" instance=ExtResource("7_omjpb")]
-position = Vector2(32, -192)
+freeze = true
 
 [node name="Timer_Vesicle_rate" type="Timer" parent="."]
 autostart = true
+
+[node name="Vesicles_parent" type="Node2D" parent="."]
+
+[node name="Vesicle" parent="Vesicles_parent" instance=ExtResource("7_omjpb")]
+position = Vector2(64, 48)
 
 [connection signal="timeout" from="Timer_Vesicle_rate" to="." method="_on_timer_vesicle_rate_timeout"]

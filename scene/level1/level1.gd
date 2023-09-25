@@ -7,20 +7,23 @@ signal final_score(score)
 @export var starting_max_virus := 2
 @export var ending_max_virus := 8
 @export var transition_duration := 30
-@export var wave_number := 3.0
-@export var level_duration := 20 #in seconds
+@export var wave_number := 4.0
+@export var level_duration := 120 #in seconds
+@export var boss_max = 1
 var score := 0
 var first_duration := true
 var end_timer := false
-var first_duration_timer := 5
+var first_duration_timer := 1
+var boss_n = 0
 
 @onready var game_over_Screen := preload("res://scene/Game_over.tscn")
 @onready var win_Screen := preload("res://scene/level1/victory.tscn")
 @onready var description_Screen := preload("res://scene/level1/level_description.tscn")
 
-var VIRUSES := [preload("res://scene/Viruses/virus_ambre.tscn")]
 
-var VIRUS = VIRUSES[0]
+var VIRUS = preload("res://scene/Viruses/virus.tscn")
+
+
 
 var time_interval = starting_interval
 var max_virus = starting_max_virus
@@ -34,6 +37,7 @@ func _ready():
 	add_child(description)
 	get_tree().paused = true
 	_start()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -59,7 +63,15 @@ func _process(_delta):
 			max_virus = 0
 			if $Viruses.get_children().size() == 0: #no more viruses left
 				_win()
-					
+	
+	if Input.is_action_just_pressed("pause"):
+		if not get_tree().paused:
+			# Pause the game and open the pause menu
+			get_tree().paused = true
+			$Pause.show()
+		else:
+			get_tree().paused = false
+			$Pause.hide()
 
 
 func random_position():
@@ -73,8 +85,19 @@ func random_position():
 
 func _on_virus_spawn_timeout():
 	if $Viruses.get_children().size() < max_virus:
-		VIRUS = random_choice(VIRUSES)
 		var virus = VIRUS.instantiate()
+		if wave_n == wave_number and boss_n < boss_max: #last wave
+			#generate the boss
+			boss_n += 1
+			virus.hp = 3 #more HP
+			virus.score = 50 #more point
+			virus.speed_out /= 2.0 #slower
+			#and BIGGER
+			virus.get_node("Sprite2D").scale *= 4
+			virus.get_node("CollisionShape2D").scale *= 4
+			virus.get_node("Cell_detection").get_node("CollisionShape2D").scale *= 4
+			virus.get_node("Area2D").get_node("CollisionShape2D").scale *= 4
+			
 		virus.position = random_position()
 		$Viruses.add_child(virus)
 		virus.connect("virus_destroyed", _score)
