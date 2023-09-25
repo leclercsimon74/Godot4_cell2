@@ -1,8 +1,8 @@
 TOCORRECT:
-Bug - Visual: For unknown reasons, the vesicle can jump out of the virus after the first Tween (all together). Very likely their point of reference can move
+
 Bug - endless rotation of organelles resulting in their expulsion from the screen - soften
 
-Gameplay: adjust vesicle production rate
+
 
 TODO:
-Make the option
+Make the option - autoload
