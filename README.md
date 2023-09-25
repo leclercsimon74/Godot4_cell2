@@ -6,9 +6,10 @@ The goal of the game is to launch vesicles to the incoming viruses and avoid the
 
 
 TO CORRECT:
-Bug - Visual: For unknown reasons, the vesicle can jump out of the virus after the first Tween (all together). Very likely their point of reference can move
 Bug - endless rotation of organelles resulting in their expulsion from the screen - soften, can still happen though
 
 
 TODO:
 Make the option - autoload
+Make the translation
+Make the fullscreen and maximize
