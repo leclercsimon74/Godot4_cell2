@@ -2,7 +2,7 @@ TOCORRECT:
 
 Bug - endless rotation of organelles resulting in their expulsion from the screen - soften
 
-
-
 TODO:
 Make the option - autoload
+Make the translation
+Make maximize fullscreen
