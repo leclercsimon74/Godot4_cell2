@@ -1,31 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmra87hbp278j"]
+[gd_scene load_steps=10 format=3 uid="uid://b6eofqw0ulr5i"]
 
 [ext_resource type="Script" path="res://scene/Viruses/virus.gd" id="1_osmlk"]
-[ext_resource type="Texture2D" path="res://img/Virus_trans.png" id="1_sjgi2"]
 [ext_resource type="PackedScene" uid="uid://lqsgyvn6ac80" path="res://scene/explosion.tscn" id="3_2q5om"]
+[ext_resource type="Texture2D" uid="uid://cayjyvsxcgv4j" path="res://img/Viruses/Ambre_Virus_trans.png" id="3_7a2t7"]
+[ext_resource type="AudioStream" uid="uid://yhe6q8b8pwbw" path="res://lib/sound/explosion_SFX.wav" id="4_o4oko"]
+[ext_resource type="AudioStream" uid="uid://yhntke1uxqqg" path="res://lib/sound/Virus_hit_SFX.wav" id="5_2oc70"]
+[ext_resource type="AudioStream" uid="uid://dscewwayqgglv" path="res://lib/sound/Virus_in_the_cell.wav" id="6_jccsd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mkmiy"]
 friction = 0.0
-bounce = 0.5
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u4t3f"]
-radius = 22.0
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrh5d"]
-radius = 22.0227
+radius = 23.0
 
 [node name="Virus" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 9
-mass = 0.1
+collision_mask = 11
 physics_material_override = SubResource("PhysicsMaterial_mkmiy")
-linear_damp_mode = 1
-angular_damp_mode = 1
 script = ExtResource("1_osmlk")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_u4t3f")
@@ -48,13 +48,23 @@ one_shot = true
 [node name="Cell_atach" type="Timer" parent="."]
 one_shot = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(3, -25.1, 19.6, -14, 29.4, -20, 32, -20, 32, -11, 26.8, -7.6, 29, -6.1, 29, 3.2, 27.4, 11.4, 32, 18.4, 32, 19.5, 31.2, 21, 29.6, 21, 26.1, 23.3, 24, 22.2, 24, 21.3, 21, 19.8, 16.8, 24, 13.3, 24, 6, 26.4, 6, 31.8, -5, 32, -5, 30.9, -4.3, 26, -6.5, 26, -17.6, 20, -18.4, 20, -25.4, 25, -28.8, 25, -32, 21.8, -32, 19, -25.4, 14, -32, 4.6, -32, 1.8, -30.4, -8, -32, -9.2, -32, -20.2, -24.8, -15.9, -6, -24.3, -6, -32, 3, -32)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u4t3f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_sjgi2")
+texture = ExtResource("3_7a2t7")
+
+[node name="explosion_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_o4oko")
+volume_db = 20.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2oc70")
+
+[node name="InTheCell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jccsd")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Cell_detection" to="." method="_on_cell_detection_body_entered"]
