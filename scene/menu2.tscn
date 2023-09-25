@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scene/menu.gd" id="1_gouqq"]
 [ext_resource type="PackedScene" uid="uid://duo42cyrat8xi" path="res://scene/level1/cell.tscn" id="2_xy74m"]
 
-[sub_resource type="Gradient" id="Gradient_vwd80"]
+[sub_resource type="Gradient" id="Gradient_v4phb"]
 colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_y8e4p"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rvm8k"]
 noise_type = 2
 seed = 1
 frequency = 0.0203
@@ -16,10 +16,11 @@ cellular_return_type = 0
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n502c"]
-color_ramp = SubResource("Gradient_vwd80")
-noise = SubResource("FastNoiseLite_y8e4p")
+color_ramp = SubResource("Gradient_v4phb")
+noise = SubResource("FastNoiseLite_rvm8k")
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_gouqq")
@@ -55,7 +56,7 @@ offset_left = 16.0
 offset_top = 40.0
 offset_right = 106.0
 offset_bottom = 71.0
-text = "Options
+text = "Tutorial
 "
 
 [node name="info_button" type="Button" parent="UI/ItemList"]
