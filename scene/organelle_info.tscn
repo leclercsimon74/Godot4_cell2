@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cvgwt7kxioyvd" path="res://img/Cell content/Reticulum_Simon_trans.png" id="4_imdtl"]
 [ext_resource type="Texture2D" uid="uid://dpthqpw1xoeiy" path="res://img/Cell content/Cell1.png" id="6_pug83"]
 
-[sub_resource type="Gradient" id="Gradient_awggh"]
+[sub_resource type="Gradient" id="Gradient_m4f34"]
 colors = PackedColorArray(0.322094, 2.52927e-05, 0.280074, 1, 0.404512, 0.404511, 0.404511, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qiu8"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yjc8e"]
 noise_type = 2
 seed = 1
 frequency = 0.0203
@@ -20,8 +20,8 @@ cellular_return_type = 0
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_assrt"]
-color_ramp = SubResource("Gradient_awggh")
-noise = SubResource("FastNoiseLite_5qiu8")
+color_ramp = SubResource("Gradient_m4f34")
+noise = SubResource("FastNoiseLite_yjc8e")
 
 [node name="Organelle" type="Control"]
 layout_mode = 3
@@ -33,11 +33,13 @@ grow_vertical = 2
 script = ExtResource("1_i35mh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 647.0
 texture = SubResource("NoiseTexture2D_assrt")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 16.0
 offset_right = 1088.0
@@ -60,6 +62,7 @@ Imagine mitochondria as the power plants of the cell. They make energy, which is
 "
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1072.0
 offset_top = 592.0
 offset_right = 1133.0
@@ -67,6 +70,7 @@ offset_bottom = 623.0
 text = "Return"
 
 [node name="PreviousButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 592.0
 offset_right = 93.0
@@ -95,8 +99,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_imdtl")
 
 [node name="Cell1" type="Sprite2D" parent="."]
-position = Vector2(560, 552)
-scale = Vector2(0.837678, 0.837678)
+position = Vector2(596.47, 580.188)
+scale = Vector2(0.570498, 0.570498)
 texture = ExtResource("6_pug83")
 
 [node name="GolgiKariTrans" type="Sprite2D" parent="Cell1"]

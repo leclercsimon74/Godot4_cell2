@@ -1,7 +1,9 @@
 extends Control
 
 
-
+func _ready():
+	$RichTextLabel.text = tr("tuto_txt")
+	$PreviousButton.text = tr("return")
 
 
 func _on_previous_button_pressed():

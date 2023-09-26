@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8gqghdbekjoh"]
+
+[ext_resource type="Script" path="res://scene/options.gd" id="1_xrn5k"]
+
+[sub_resource type="Gradient" id="Gradient_awggh"]
+colors = PackedColorArray(0.322094, 2.52927e-05, 0.280074, 1, 0.404512, 0.404511, 0.404511, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qiu8"]
+noise_type = 2
+seed = 1
+frequency = 0.0203
+cellular_distance_function = 2
+cellular_jitter = 0.9
+cellular_return_type = 0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwce2"]
+color_ramp = SubResource("Gradient_awggh")
+noise = SubResource("FastNoiseLite_5qiu8")
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xrn5k")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = SubResource("NoiseTexture2D_gwce2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -291.0
+offset_right = 528.0
+offset_bottom = 291.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "ABOUT"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Label"]
+layout_mode = 2
+offset_top = 196.0
+offset_right = 1048.0
+offset_bottom = 511.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Label/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="Level_duration_Button" type="OptionButton" parent="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+item_count = 5
+selected = 2
+popup/item_0/text = "60"
+popup/item_0/id = 0
+popup/item_1/text = "90"
+popup/item_1/id = 1
+popup/item_2/text = "120"
+popup/item_2/id = 2
+popup/item_3/text = "180"
+popup/item_3/id = 3
+popup/item_4/text = "240"
+popup/item_4/id = 4
+
+[node name="FullScreen_Button" type="CheckButton" parent="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Full screen"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Return"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+bbcode_enabled = true
+text = "Game Made in [b]Godot[/b] 4.1.1 by [b]Leclerc Simon[/b] at the University of Jyväskulä for the Researcher's Night 2023.
+Art made by researcher and their kids.
+SFX sound from freemusic.com or created for this game.
+"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 177.0
+offset_top = 320.0
+offset_right = 449.0
+offset_bottom = 365.0
+theme_override_font_sizes/font_size = 30
+text = "Level duration (s)"
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/Level_duration_Button" to="." method="_on_level_duration_button_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/FullScreen_Button" to="." method="_on_full_screen_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

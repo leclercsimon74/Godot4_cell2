@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg3k7dlxss6ob"]
+[gd_scene load_steps=7 format=3 uid="uid://bg3k7dlxss6ob"]
 
 [ext_resource type="Script" path="res://scene/Game_over.gd" id="1_f8bhx"]
+[ext_resource type="AudioStream" uid="uid://cq7ct777g30lx" path="res://lib/sound/Game_over.wav" id="2_rilva"]
 
 [sub_resource type="Gradient" id="Gradient_ij0x2"]
 colors = PackedColorArray(0.582277, 1.60275e-05, 0.422842, 1, 0.831774, 0.709785, 0.966322, 1)
@@ -65,6 +66,9 @@ process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rilva")
 
 [connection signal="pressed" from="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer/TryButton" to="." method="_on_try_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Label/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b8gwjbut3hxq4" path="res://img/Tutorial/virus boss.png" id="6_n3rbq"]
 
 [sub_resource type="Gradient" id="Gradient_aihdx"]
-colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
+colors = PackedColorArray(0.299382, 0.593928, 0.662036, 1, 0.830335, 0.830335, 0.830335, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j575u"]
 noise_type = 2
@@ -33,11 +33,13 @@ grow_vertical = 2
 script = ExtResource("1_ks8gc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 647.0
 texture = SubResource("NoiseTexture2D_goign")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 16.0
 offset_right = 1088.0
@@ -60,30 +62,32 @@ Be carefull of the virus BOSS, if he touches the cell outer membrane, this is GA
 "
 
 [node name="VesicleToLaunchWithVector" type="Sprite2D" parent="."]
-position = Vector2(880, 176)
+position = Vector2(888, 208)
 scale = Vector2(0.791971, 0.791971)
 texture = ExtResource("2_f152d")
 
 [node name="VesicleToLaunch" type="Sprite2D" parent="."]
-position = Vector2(584, 168)
+position = Vector2(584, 208)
 scale = Vector2(1.28049, 1.28049)
 texture = ExtResource("3_torct")
 
 [node name="Vesicle" type="Sprite2D" parent="."]
-position = Vector2(360, 168)
+position = Vector2(360, 208)
 scale = Vector2(1.10215, 1.10215)
 texture = ExtResource("4_1ud6o")
 
 [node name="VirusInAndOutCell" type="Sprite2D" parent="."]
-position = Vector2(376, 504)
+position = Vector2(416, 520)
+scale = Vector2(0.880952, 0.880952)
 texture = ExtResource("5_3ouxg")
 
 [node name="VirusBoss" type="Sprite2D" parent="."]
-position = Vector2(808, 504)
-scale = Vector2(1.22727, 1.22727)
+position = Vector2(744, 520)
+scale = Vector2(1.00524, 1.00524)
 texture = ExtResource("6_n3rbq")
 
 [node name="PreviousButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 592.0
 offset_right = 93.0

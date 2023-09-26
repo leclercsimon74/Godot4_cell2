@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://qb8i6h0kumq8"]
+[gd_scene load_steps=9 format=3 uid="uid://qb8i6h0kumq8"]
 
 [ext_resource type="Script" path="res://scene/menu.gd" id="1_gouqq"]
 [ext_resource type="PackedScene" uid="uid://duo42cyrat8xi" path="res://scene/level1/cell.tscn" id="2_xy74m"]
+[ext_resource type="Texture2D" uid="uid://cdgdtkd7gjojd" path="res://img/misc/Finland.png" id="3_mnugb"]
+[ext_resource type="Texture2D" uid="uid://c2ilx4bk5c3q" path="res://img/misc/UK.png" id="4_jwtyf"]
+[ext_resource type="Texture2D" uid="uid://clbx7vuei1f6p" path="res://img/misc/France.png" id="5_k38qk"]
 
-[sub_resource type="Gradient" id="Gradient_v4phb"]
+[sub_resource type="Gradient" id="Gradient_yvjag"]
 colors = PackedColorArray(0.907731, 0.000241231, 0.800454, 1, 0.830335, 0.830335, 0.830335, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rvm8k"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_61ver"]
 noise_type = 2
 seed = 1
 frequency = 0.0203
@@ -16,8 +19,8 @@ cellular_return_type = 0
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n502c"]
-color_ramp = SubResource("Gradient_v4phb")
-noise = SubResource("FastNoiseLite_rvm8k")
+color_ramp = SubResource("Gradient_yvjag")
+noise = SubResource("FastNoiseLite_61ver")
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -31,54 +34,87 @@ offset_right = 1151.0
 offset_bottom = 647.0
 texture = SubResource("NoiseTexture2D_n502c")
 
+[node name="cell" parent="." instance=ExtResource("2_xy74m")]
+position = Vector2(320, 312)
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 440.0
+offset_top = -240.0
+offset_right = 480.0
+offset_bottom = -200.0
 
 [node name="ItemList" type="ItemList" parent="UI"]
 layout_mode = 0
-offset_top = 488.0
-offset_right = 120.0
+offset_top = 440.0
+offset_right = 168.0
 offset_bottom = 648.0
 
-[node name="start_button" type="Button" parent="UI/ItemList"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/ItemList"]
 layout_mode = 0
-offset_left = 16.0
-offset_right = 106.0
-offset_bottom = 31.0
+offset_right = 168.0
+offset_bottom = 208.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ItemList/CenterContainer"]
+layout_mode = 2
+
+[node name="start_button" type="Button" parent="UI/ItemList/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "New game"
 
-[node name="option_button" type="Button" parent="UI/ItemList"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 40.0
-offset_right = 106.0
-offset_bottom = 71.0
+[node name="option_button" type="Button" parent="UI/ItemList/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Tutorial
 "
 
-[node name="info_button" type="Button" parent="UI/ItemList"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 80.0
-offset_right = 117.0
-offset_bottom = 111.0
+[node name="info_button" type="Button" parent="UI/ItemList/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Informations"
 
-[node name="quit_button" type="Button" parent="UI/ItemList"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 120.0
-offset_right = 106.0
-offset_bottom = 151.0
+[node name="option_button2" type="Button" parent="UI/ItemList/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="quit_button" type="Button" parent="UI/ItemList/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Quit"
 
-[node name="cell" parent="." instance=ExtResource("2_xy74m")]
-position = Vector2(496, 312)
+[node name="Finland_B" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 584.0
+offset_right = 1151.0
+offset_bottom = 759.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("3_mnugb")
+stretch_mode = 0
 
-[connection signal="pressed" from="UI/ItemList/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="UI/ItemList/option_button" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="UI/ItemList/info_button" to="." method="_on_info_button_pressed"]
-[connection signal="pressed" from="UI/ItemList/quit_button" to="." method="_on_quit_button_pressed"]
+[node name="UK_B" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 956.0
+offset_top = 584.0
+offset_right = 1274.0
+offset_bottom = 759.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("4_jwtyf")
+stretch_mode = 0
+
+[node name="France_B" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1056.0
+offset_top = 584.0
+offset_right = 1343.0
+offset_bottom = 759.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("5_k38qk")
+stretch_mode = 0
+
+[connection signal="pressed" from="UI/ItemList/CenterContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/CenterContainer/VBoxContainer/option_button" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/CenterContainer/VBoxContainer/info_button" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="UI/ItemList/CenterContainer/VBoxContainer/option_button2" to="." method="_on_option_button_2_pressed"]
+[connection signal="pressed" from="UI/ItemList/CenterContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Finland_B" to="." method="_on_finland_b_pressed"]
+[connection signal="pressed" from="UK_B" to="." method="_on_uk_b_pressed"]
+[connection signal="pressed" from="France_B" to="." method="_on_france_b_pressed"]

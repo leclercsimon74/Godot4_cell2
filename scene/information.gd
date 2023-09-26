@@ -10,6 +10,10 @@ func _ready():
 	$RigidBody2D2.apply_impulse(Vector2(randi()%int(speed),randi()%int(speed)))
 	$RigidBody2D4.apply_impulse(Vector2(randi()%int(speed),randi()%int(speed)))
 	$RigidBody2D5.apply_impulse(Vector2(randi()%int(speed),randi()%int(speed)))
+	
+	$Button.text = tr("return")
+	$NextButton.text = tr("next_organelle")
+	$RichTextLabel.text = tr("virus_info")
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://scene/menu2.tscn")
