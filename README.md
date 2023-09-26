@@ -10,6 +10,4 @@ Bug - endless rotation of organelles resulting in their expulsion from the scree
 
 
 TODO:
-Make the option - autoload
-Make the translation
-Make the fullscreen and maximize
+Export in html/android/Window
