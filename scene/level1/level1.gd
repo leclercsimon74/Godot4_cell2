@@ -2,29 +2,28 @@ extends Node2D
 
 signal final_score(score)
 
+#export variable to change on the fly
 @export var starting_interval := 15
 @export var ending_interval := 5
 @export var starting_max_virus := 2
 @export var ending_max_virus := 8
 @export var transition_duration := 30
 @export var wave_number := 4.0
-@export var level_duration := 120 #in seconds
 @export var boss_max = 1
-var score := 0
-var first_duration := true
-var end_timer := false
-var first_duration_timer := 1
-var boss_n = 0
 
+#on ready variables, loaded when scene created and global variables
+@onready var vars = get_node("/root/GameManager")
+@onready var level_duration = vars.level_duration #in seconds
 @onready var game_over_Screen := preload("res://scene/Game_over.tscn")
 @onready var win_Screen := preload("res://scene/level1/victory.tscn")
 @onready var description_Screen := preload("res://scene/level1/level_description.tscn")
 
-
+#classic/internal variables
 var VIRUS = preload("res://scene/Viruses/virus.tscn")
-
-
-
+var first_duration := true
+var end_timer := false
+var first_duration_timer := 1
+var boss_n = 0
 var time_interval = starting_interval
 var max_virus = starting_max_virus
 var transition_timer := 0.0
@@ -106,9 +105,10 @@ func _on_virus_spawn_timeout():
 
 
 func _score(s):
-	score += s
-	print('score is '+str(score))
-	$UserInterface/ScoreLabel.text = "Score: %s" % score
+	vars.add_score(s)
+	var sc = vars.get_score()
+	print('score is '+str(sc))
+	$UserInterface/ScoreLabel.text = tr("score")+str(sc)
 	
 	
 func _lose():
@@ -121,16 +121,13 @@ func _win():
 	print('Victory!')
 	var win = win_Screen.instantiate()
 	add_child(win)
-	$Victory/Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/Label.text = "Final score: %s" % score
+	$Victory/Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/Label.text = "Final score: %s" % vars.get_score()
 	get_tree().paused = true
 	
 func _start():
 	print('Main Timer start')
 	$Level_Timer.start(level_duration)
 	
-func random_choice(list: Array):
-	return list[ randi() % list.size() ]
-
 
 func _on_level_timer_timeout():
 	print('Infection ends')

@@ -1,7 +1,13 @@
 extends Control
+@onready var vars = get_node("/root/GameManager")
 
 func _ready():
 	$AudioStreamPlayer.play()
+	$Panel/MarginContainer/VBoxContainer/Label.text = tr("victory")
+	$Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/Label.text = tr("final_score")+str(vars.get_score())
+	$Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/Mainmenu.text = tr("main_menu")
+	$Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/QuitButton.text = tr("quit")
+	$Panel/MarginContainer/VBoxContainer/Label/CenterContainer/VBoxContainer/NextButton.text = tr("next")
 
 
 func _on_quit_button_pressed():

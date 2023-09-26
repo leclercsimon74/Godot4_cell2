@@ -43,6 +43,16 @@ theme_override_font_sizes/font_size = 50
 text = "INFORMATIONS"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 77.0
+offset_right = 482.0
+offset_bottom = 149.0
+theme_override_font_sizes/font_size = 38
+text = "Secretory cell"
+horizontal_alignment = 1
+
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 2
 offset_left = 26.0
