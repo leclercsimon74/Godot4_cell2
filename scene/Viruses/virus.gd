@@ -73,16 +73,16 @@ func _on_area_2d_body_entered(body):
 			print('Virus destroyed!')
 			direction = Vector2.ZERO
 			speed_out = 0
-			body.set_linear_velocity(Vector2.ZERO)
-			#animation
-			var tween2 = get_tree().create_tween()
-			tween2.tween_property(body, "global_position", global_position, 1)
-			await tween2.finished
-			body.global_transform.origin = self.position
-			tween2 = get_tree().create_tween()
-			tween2.tween_property($Sprite2D, "modulate", Color.RED, degradation_time)
-			await tween2.finished
-			if body != null: #want to detect if the the body has not been already destoyed...
+			if body != null:
+				body.set_linear_velocity(Vector2.ZERO)
+				#animation
+				var tween2 = get_tree().create_tween()
+				tween2.tween_property(body, "global_position", global_position, 1)
+				await tween2.finished
+				body.global_transform.origin = self.position
+				tween2 = get_tree().create_tween()
+				tween2.tween_property($Sprite2D, "modulate", Color.RED, degradation_time)
+				await tween2.finished
 				body.queue_free()
 			$Sprite2D.visible = false
 			$Explosion.emitting = true
@@ -92,18 +92,19 @@ func _on_area_2d_body_entered(body):
 			
 		else: #virus not destroyed immediatelly in the cell
 			print("Destroying a virus in the cell")
-			body.set_linear_velocity(Vector2.ZERO)
-			direction = Vector2.ZERO
-			speed_in = 0
-			#animation
-			var tween3 = get_tree().create_tween()
-			tween3.tween_property(body, "global_position", global_position, 1)
-			await tween3.finished
-			body.global_transform.origin = self.position
-			tween3 = get_tree().create_tween()
-			tween3.tween_property($Sprite2D, "modulate", Color.RED, penalty_time_incell)
-			await tween3.finished
-			body.queue_free()
+			if body != null:
+				body.set_linear_velocity(Vector2.ZERO)
+				direction = Vector2.ZERO
+				speed_in = 0
+				#animation
+				var tween3 = get_tree().create_tween()
+				tween3.tween_property(body, "global_position", global_position, 1)
+				await tween3.finished
+				body.global_transform.origin = self.position
+				tween3 = get_tree().create_tween()
+				tween3.tween_property($Sprite2D, "modulate", Color.RED, penalty_time_incell)
+				await tween3.finished
+				body.queue_free()
 			$Sprite2D.visible = false
 			$Explosion.emitting = true
 			$explosion_sfx.play()
